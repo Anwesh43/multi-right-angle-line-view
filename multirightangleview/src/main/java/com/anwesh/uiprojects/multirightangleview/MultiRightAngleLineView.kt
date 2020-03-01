@@ -19,7 +19,7 @@ val scGap : Float = 0.02f / (lines * parts)
 val strokeFactor : Int = 90
 val foreColor : Int = Color.parseColor("#1A237E")
 val backColor : Int = Color.parseColor("#BDBDBD")
-val delay : Long = 20
+val delay : Long = 10
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -30,6 +30,7 @@ fun Canvas.drawRightAngleLine(i : Int, scale : Float, size : Float, paint : Pain
     val sf : Float = scale.sinify().divideScale(i, lines)
     for (j in 0..(parts - 1)) {
         save()
+        translate(i * size, 0f)
         rotate(90f * j * sf.divideScale(1, parts))
         drawLine(0f, 0f, 0f, -size * sf.divideScale(0, parts), paint)
         restore()

@@ -183,4 +183,26 @@ class MultiRightAngleLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : MultiRightAngleLineView) {
+
+        private var mral : MultiRightAngleLine = MultiRightAngleLine(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            mral.draw(canvas, paint)
+            animator.animate {
+                mral.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            mral.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }

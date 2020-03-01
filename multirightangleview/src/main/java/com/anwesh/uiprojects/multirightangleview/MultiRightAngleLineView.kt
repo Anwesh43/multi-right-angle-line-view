@@ -205,4 +205,13 @@ class MultiRightAngleLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : MultiRightAngleLineView {
+            val view : MultiRightAngleLineView = MultiRightAngleLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
